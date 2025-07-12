@@ -31,6 +31,7 @@ def gameover(screen):
 
             if event.type == pygame.QUIT or keys[pygame.K_q]:
                 pygame.quit()
+                return False
                 
             elif keys[pygame.K_r]:
                 return True
