@@ -31,9 +31,15 @@ def gameover(screen):
 
             if event.type == pygame.QUIT or keys[pygame.K_q]:
                 pygame.quit()
-                exit()
+                
             elif keys[pygame.K_r]:
-                waiting = False  # You can replace this with a quit or restart flag
+                return True
+
+def run_game():
+    while True:
+        restart = main()
+        if not restart:
+            break
 
 def main():
     pygame.init()
@@ -100,8 +106,8 @@ def main():
         for enemy in enemies[:]:
             if enemy.y_location > 850: #greater than point we can shoot
                 enemies.remove(enemy)
-                gameover(screen)
-                return main()
+                return gameover(screen)
+                
             enemy.move(enemy.speed)
             enemy.draw(screen)
 
@@ -118,4 +124,5 @@ def main():
         dt = clock.tick(60) / 1000
         pygame.display.flip()
 
-main()
+if __name__ == "__main__":
+    run_game()
